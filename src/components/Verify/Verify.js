@@ -10,21 +10,21 @@ const Verify = (props) => {
     const {setVerified} = props
     const navigate = useNavigate()
     const refresh = () => {
-        window.location.reload(true);
+        navigate("/pages");
     }
     console.log(auth.currentUser)
     useEffect(() => {
        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if(currentUser !== undefined) {
+            if(currentUser === undefined) {
                 setWarn("Lütfen giriş yapınız.")
-                if(!currentUser.emailVerified){
-                    setWarn("Emailinizi doğruladıktan sonra sayfayı yenileyin...")
-                    setEmailTekrar("Başka bir doğrulama e-postası almak için tıklayın.")
-                }
-                else {
-                    setVerified("verified")
-                }
             }
+            if(currentUser !== undefined && !currentUser.emailVerified){
+                setWarn("Emailinizi doğruladıktan sonra sayfayı yenileyin...")
+                setEmailTekrar("Başka bir doğrulama e-postası almak için tıklayın.")
+            }
+            else {
+                setVerified("verified")
+            }       
         } )
         return unsubscribe
     }, [])
