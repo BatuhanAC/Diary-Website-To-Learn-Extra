@@ -16,7 +16,7 @@ const SignUp = () => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if(currentUser.email !== undefined)
              {
-                 navigate("pages")
+                 navigate("/pages")
              }
          })
          return unsubscribe
@@ -36,6 +36,7 @@ const SignUp = () => {
         await setDoc(userDocRef, {userEmail:email, userName:name, userPages: []})
         const user = auth.currentUser
         try {
+            console.log(JSON.stringify(user.email))
             await sendEmailVerification(user)
         } catch (error) {
             console.log("Verifikasyonda Sıkıntı: " + error.message)
