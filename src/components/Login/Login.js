@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import {signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth"
 import {auth} from "firebase-config"
 import { motion } from "framer-motion";
+import { Warn } from "components/Warn/Warn";
 
 const Login = () => {
+    const [warn, setWarn] = useState(null)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     
@@ -13,16 +15,15 @@ const Login = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
-            console.log(error.message)
             if(error.message === "Firebase: Error (auth/wrong-password)."){
-                alert("Şifre yanlış.")}
+                setWarn("Şifre yanlış.")}
             else if (error.message === "Firebase: Error (auth/user-not-found)."){
-                alert("Email adresi yanlış.")
+                setWarn("Email adresi yanlış veya henüz kayıt olmadınız.")
             }
             else if (error.message === "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)."){
-                alert("Çok kez yanlış şifre denendiği için hesabınız kısa süreliğine askıya alınmıştır. Lütfen şifrenizi değiştirip tekrar deneyin.")
+                setWarn("Çok kez yanlış şifre denendiği için hesabınız kısa süreliğine askıya alınmıştır. Lütfen şifrenizi değiştirip tekrar deneyin.")
             }
-            else alert("Lütfen tüm alanları doldurun.")
+            else setWarn("Lütfen tüm alanları düzgünce doldurun.")
             return
         }
         navigate('pages')
@@ -42,8 +43,13 @@ const Login = () => {
     const preventRefresh = (event) => {if(event.key === 'Enter'){event.preventDefault()}}
   
   return (
+    <>
+    { warn ?
+            (
+                <Warn warn={warn} setWarn={setWarn} />
+            ) : null
+    }
     <motion.div 
-    
     className="
         bg-gradient-to-r
         from-enviroment
@@ -207,6 +213,7 @@ const Login = () => {
             </motion.div>
         </motion.div>
     </motion.div>
+    </>
   )
 }
     

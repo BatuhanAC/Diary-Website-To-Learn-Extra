@@ -5,8 +5,9 @@ import db from "firebase-config"
 import {auth} from "firebase-config"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
-
+import { Warn } from "components/Warn/Warn"
 const SignUp = () => {
+    const [warn, setWarn] = useState(null)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
@@ -27,8 +28,18 @@ const SignUp = () => {
             await createUserWithEmailAndPassword(auth, email, password)
         }catch(error) {
             if (error.message === "Firebase: Error (auth/email-already-in-use)."){
-                alert("Girdiğiniz email zaten kullanımda.")
+                setWarn("Girdiğiniz email zaten kullanımda.")
             }
+            else if(error.message === "Firebase: Error (auth/invalid-email)."){
+                setWarn("Lütfen geçerli bir email adresi girin.")
+            }
+            else if(error.message === "Firebase: Error (auth/internal-error)."){
+                setWarn("Lütfen email adresi ve şifre alanlarını düzgünce doldurun.")
+            }
+            else if(error.message === "Firebase: Password should be at least 6 characters (auth/weak-password)."){
+                setWarn("Şifreniz en az 6 karakter uzunluğunda olmalı.")
+            }
+            console.log(error.message)
             return
         }
 
@@ -48,6 +59,12 @@ const SignUp = () => {
     const preventRefresh = (event) => {if(event.key === 'Enter'){event.preventDefault()}}
 
     return (
+    <>
+     { warn ?
+            (
+                <Warn warn={warn} setWarn={setWarn} />
+            ) : null
+    }    
     <div 
     className="
     bg-gradient-to-r
@@ -188,6 +205,7 @@ const SignUp = () => {
         px-5
         ">Geri</motion.button>
     </div>
+    </>
     )
   }
       

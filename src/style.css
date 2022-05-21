@@ -481,8 +481,20 @@ html, body {
   position: fixed;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .bottom-1 {
   bottom: 0.25rem;
+}
+
+.top-\[20\%\] {
+  top: 20%;
+}
+
+.left-\[50\%\] {
+  left: 50%;
 }
 
 .mt-10 {
@@ -517,28 +529,20 @@ html, body {
   height: 75vh;
 }
 
-.h-\[85vh\] {
-  height: 85vh;
-}
-
-.h-\[45vh\] {
-  height: 45vh;
-}
-
-.h-\[25vh\] {
-  height: 25vh;
+.h-\[12vh\] {
+  height: 12vh;
 }
 
 .h-\[5vh\] {
   height: 5vh;
 }
 
-.h-\[75\%\] {
-  height: 75%;
+.h-\[7vh\] {
+  height: 7vh;
 }
 
-.h-\[65\%\] {
-  height: 65%;
+.h-\[8vh\] {
+  height: 8vh;
 }
 
 .min-h-screen {
@@ -553,10 +557,6 @@ html, body {
   width: 20vw;
 }
 
-.w-\[100vw\] {
-  width: 100vw;
-}
-
 .w-\[33\.3vw\] {
   width: 33.3vw;
 }
@@ -569,65 +569,27 @@ html, body {
   width: 25vw;
 }
 
-.w-\[75vw\] {
-  width: 75vw;
-}
-
-.w-\[50vw\] {
-  width: 50vw;
-}
-
-.w-\[30vw\] {
-  width: 30vw;
-}
-
-.w-\[15vw\] {
-  width: 15vw;
-}
-
-.w-\[45vw\] {
-  width: 45vw;
-}
-
 .w-\[35vw\] {
   width: 35vw;
 }
 
-.w-\[75\%\] {
-  width: 75%;
+.w-\[75vw\] {
+  width: 75vw;
 }
 
-.w-\[65\%\] {
-  width: 65%;
-}
-
-.w-\[99vw\] {
-  width: 99vw;
-}
-
-.w-\[5vw\] {
-  width: 5vw;
-}
-
-.w-\[80vw\] {
-  width: 80vw;
-}
-
-.w-\[100\%\] {
-  width: 100%;
-}
-
-.w-\[15\.3vw\] {
-  width: 15.3vw;
-}
-
-.w-\[88vw\] {
-  width: 88vw;
+.w-\[100vw\] {
+  width: 100vw;
 }
 
 .min-w-min {
   min-width: -webkit-min-content;
   min-width: min-content;
+}
+
+.-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-default {
@@ -646,24 +608,16 @@ html, body {
   grid-auto-flow: column;
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-col {
   flex-direction: column;
-}
-
-.place-items-center {
-  place-items: center;
-}
-
-.content-center {
-  align-content: center;
 }
 
 .items-center {
@@ -694,20 +648,20 @@ html, body {
   gap: 2.5rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
 .gap-y-\[3vh\] {
   row-gap: 3vh;
 }
 
-.place-self-center {
-  place-self: center;
-}
-
 .self-center {
   align-self: center;
-}
-
-.justify-self-center {
-  justify-self: center;
 }
 
 .rounded-2xl {
@@ -735,6 +689,11 @@ html, body {
   border-color: transparent;
 }
 
+.border-red-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity));
+}
+
 .bg-transparent {
   background-color: transparent;
 }
@@ -747,6 +706,11 @@ html, body {
 .bg-enviroment {
   --tw-bg-opacity: 1;
   background-color: rgb(12 9 10 / var(--tw-bg-opacity));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -764,10 +728,6 @@ html, body {
 
 .to-enviroment {
   --tw-gradient-to: #0C090A;
-}
-
-.bg-cover {
-  background-size: cover;
 }
 
 .p-2 {
@@ -788,6 +748,14 @@ html, body {
 
 .p-\[45px\] {
   padding: 45px;
+}
+
+.p-\[15px\] {
+  padding: 15px;
+}
+
+.p-12 {
+  padding: 3rem;
 }
 
 .py-2 {
@@ -850,6 +818,11 @@ html, body {
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -874,24 +847,12 @@ html, body {
     display: grid;
   }
 
-  .sm\:h-\[25vh\] {
-    height: 25vh;
-  }
-
-  .sm\:h-\[5vh\] {
-    height: 5vh;
+  .sm\:w-\[20vw\] {
+    width: 20vw;
   }
 
   .sm\:w-\[55vw\] {
     width: 55vw;
-  }
-
-  .sm\:w-\[15vw\] {
-    width: 15vw;
-  }
-
-  .sm\:w-\[20vw\] {
-    width: 20vw;
   }
 
   .sm\:grid-cols-3 {
@@ -904,20 +865,12 @@ html, body {
 }
 
 @media (min-width: 768px) {
-  .md\:h-\[35vh\] {
-    height: 35vh;
-  }
-
   .md\:h-\[25vh\] {
     height: 25vh;
   }
 
   .md\:w-\[70vw\] {
     width: 70vw;
-  }
-
-  .md\:w-\[50vw\] {
-    width: 50vw;
   }
 }
 

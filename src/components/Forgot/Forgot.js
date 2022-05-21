@@ -4,15 +4,23 @@ import { auth } from "firebase-config"
 import {sendPasswordResetEmail} from 'firebase/auth'
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { Warn } from "components/Warn/Warn"
 const Forgot = () => {
     const navigate = useNavigate()
+    const [warn, setWarn] = useState(null)
     const [email, setEmail] = useState("")
     const handleResetPassword = async () => {
         try {
             await sendPasswordResetEmail(auth, email)     
         } catch (error) {
             if(error.message === "Firebase: Error (auth/invalid-email)."){
-                alert("Girdiğiniz email adresine ait bir kayıt bulunmamakta.")
+                setWarn("Böyle bir email adresi var olamaz.")
+            }
+            if(error.message === "Firebase: Error (auth/missing-email)."){
+                setWarn("Lütfen email adersinizi giriniz.")
+            }
+            if(error.message === "Firebase: Error (auth/user-not-found)."){
+                setWarn("Girdiğiniz email adresine ait bir kullanıcı bulunmamakta.")
             }
             return
         }
@@ -22,6 +30,12 @@ const Forgot = () => {
     const preventRefreshAndSend = (event) => {if(event.key === 'Enter'){event.preventDefault(); handleResetPassword()}}
 
     return (
+        <>
+        { warn ?
+            (
+                <Warn warn={warn} setWarn={setWarn} />
+            ) : null
+            }
         <motion.div
         className="
         bg-gradient-to-r
@@ -51,8 +65,7 @@ const Forgot = () => {
             border-enviroment 
             outline-none 
             rounded-2xl 
-            text-center 
-            flex 
+            text-center
             p-2 
             w-[20vw]
             min-w-min 
@@ -120,6 +133,7 @@ const Forgot = () => {
             px-5
             ">Geri</motion.button>
         </motion.div>
+        </>
     )
   }
       
