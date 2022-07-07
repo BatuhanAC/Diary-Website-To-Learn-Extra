@@ -72,7 +72,7 @@ const Pages = () => {
       to-enviroment 
       min-h-screen 
       h-[100%] 
-      w-[100vw]
+      w-[100%]
       '>
         <Header userName = {userName} btnText="Yeni Sayfa" btnLogo={<FaBookMedical/>} btnText2="Çıkış" btnLogo2={<FiLogOut/>} btnNav={"/page/"+ bugun} />
         <motion.div className="

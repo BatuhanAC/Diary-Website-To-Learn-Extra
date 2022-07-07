@@ -72,12 +72,13 @@ const PageHeader = (props) => {
     className=" 
     lg:h-[35vh]
     md:h-[25vh]
+    md:w-[100%]
     grid
     grid-cols-3
     h-[15vh]
     items-center
     ">
-    <motion.div className='grid justify-center w-[33.3vw] p-3 '>
+    <motion.div className='grid justify-center  p-3 '>
       <motion.button 
       
         variants={buttonAnimate}  
@@ -128,7 +129,6 @@ const PageHeader = (props) => {
       flex
       justify-center
       items-center
-      w-[33.3vw]
       '>
       <motion.button 
 
